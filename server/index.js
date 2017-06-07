@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
+const router = require('express').Router();
 
-app.use(morgan('dev'));
+module.exports = router;
