@@ -1,0 +1,23 @@
+{
+  "name": "airportdistances",
+  "version": "1.0.0",
+  "description": "calculates the distance (in nautical miles) between two airports.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edwardx89/airportDistance.git"
+  },
+  "author": "Edward Goo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Edwardx89/airportDistance/issues"
+  },
+  "homepage": "https://github.com/Edwardx89/airportDistance#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "morgan": "^1.8.2"
+  }
+}
