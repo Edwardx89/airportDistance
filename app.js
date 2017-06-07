@@ -4,17 +4,25 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.set('view engine', 'html');
 //Logging Middleware
 app.use(morgan('dev'));
 
 //creating a static path for public folder
-express.static(path.join(__dirname, './public'));
+app.use(express.static(path.join(__dirname, './public')));
+
+// statically serve front-end dependencies
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 
 //parsing middleware so that you can use req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api', require('./server'))
+app.get('/', function(req, res, next){
+  console.log('hit')
+  res.sendFile('index.html', {root: './public/javascript'})
+})
 
 // failed to catch req above means 404, forward to error handler
 app.use(function (req, res, next) {
