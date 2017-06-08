@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
+const axios = require('axios');
 
 app.set('view engine', 'html');
 //Logging Middleware
@@ -19,10 +20,13 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function(req, res, next){
-  console.log('hit')
-  res.sendFile('index.html', {root: './public/javascript'})
-})
+// app.get('/', function(req, res, next){
+//   console.log('hit')
+//   res.sendFile('index.html', {root: './views'})
+// })
+
+app.use('/', require('./server/index.js'))
+
 
 // failed to catch req above means 404, forward to error handler
 app.use(function (req, res, next) {
