@@ -37,17 +37,19 @@ $( document ).ready(function() {
 
                 // this deals with the successful response data
                 apca.onSuccess = function (data) {
-                  console.log(data)
-                if (data.status) {
-                   response( $.map( data.airports, function( item ) {
-                if (item.country.name === "United States") {
-                  return {
-                    label: item.name + ' (' + item.iata + ')',
-                    value: item.iata,
-                    code: item.iata
-                  }
-                }
-              }));
+                  var listAry = [],
+                    thisAirport;
+                  if (data.status) { // success
+                    for (var i = 0, len = data.airports.length; i < len; i++) {
+                      thisAirport = data.airports[i];
+                      if(thisAirport.country.name === 'United States') listAry.push(itemObj(thisAirport));
+                      if (thisAirport.children && thisAirport.country.name === 'United States') {
+                        for (var j = 0, jLen = thisAirport.children.length; j < jLen; j++) {
+                          listAry.push(itemObj(thisAirport.children[j], true));
+                        }
+                      }
+                    }
+                    response(listAry);
                     } else { // no results
                         response();
                     }
