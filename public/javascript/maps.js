@@ -6,8 +6,4 @@ function initMap() {
           zoom: 17,
           mapTypeID: google.maps.MapTypeId.ROADMAP,
 })
-let marker = new google.maps.Marker({
-  position: location,
-  map: map
-});
 }

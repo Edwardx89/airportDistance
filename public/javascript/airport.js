@@ -18,9 +18,10 @@ $( document ).ready(function() {
                   console.log('airport', airport)
                   console.log('isChild', isChild)
                     let label;
-                    if (isChild) { // format children labels
+                    if (isChild) { // format children labels to show all airports
                         label = '&rdsh;' + airport.iata + ' - ' + airport.name;
                     } else { // format labels
+                      console.log('hit else')
                         label = airport.city;
                         if (airport.state.abbr) {
                             label += ', ' + airport.state.abbr;
@@ -42,7 +43,8 @@ $( document ).ready(function() {
                   if (data.status) { // success
                     for (var i = 0, len = data.airports.length; i < len; i++) {
                       thisAirport = data.airports[i];
-                      if(thisAirport.country.name === 'United States') listAry.push(itemObj(thisAirport));
+                      console.log('thisAirport', thisAirport)
+                      if(thisAirport.country.name === 'United States') listAry.push(itemObj(thisAirport, true));
                       if (thisAirport.children && thisAirport.country.name === 'United States') {
                         for (var j = 0, jLen = thisAirport.children.length; j < jLen; j++) {
                           listAry.push(itemObj(thisAirport.children[j], true));
@@ -60,7 +62,7 @@ $( document ).ready(function() {
                 };
             },
             select: function( event, ui ) {
-                // do something for click event
+                // Will console log the code of the airport selected
                 console.log(ui.item.code);
             }
         }
