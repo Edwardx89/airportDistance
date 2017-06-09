@@ -1,7 +1,8 @@
 $( document ).ready(function() {
   //autocomplete
   $(function() {
-    $( '.autocomplete' ).each(function () {
+    $( '.autocomplete' ).each(function (x) {
+      console.log('each', $(this))
         let apca = new apc('autocomplete', {
             key : '2b19bd2446',
             secret : 'bc4ed20725a3d97', // Your API Secret Key: use this if you are not connecting from a web server
@@ -63,7 +64,25 @@ $( document ).ready(function() {
             },
             select: function( event, ui ) {
                 // Will console log the code of the airport selected
-                console.log(ui.item.code);
+                // console.log('event', event)
+                // console.log('ui', ui)
+                // console.log(ui.item.code);
+                let $thisAirport = $(this)
+                apcs = new apc('single', {
+                  key: '2b19bd2446',
+                  secret: 'bc4ed20725a3d97', // Your API Secret Key: use this if you are not connecting from a web server
+                  limit: 3
+                });
+                apcs.request(ui.item.code)
+
+                apcs.onError = function (data) {
+                  console.log(data.message);
+                };
+                apcs.onSuccess = function (data) {
+                  //add the object of data to each input box.
+                  console.log(data.airport);
+                  $thisAirport[0].airport = data.airport
+                };
             }
         }
 
