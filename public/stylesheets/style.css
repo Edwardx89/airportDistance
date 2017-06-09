@@ -1,0 +1,18 @@
+#map {
+  height: 100%;
+}
+html, body {
+        height: 70%;
+        width: 70%;
+        margin: 0;
+        padding: 0;
+}
+form {
+  width: 200px;
+  display: inline-block;
+}
+form input {
+  font-size: 16px;
+  padding: 5px;
+  width: 200px;
+}

@@ -6,23 +6,39 @@
   <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/stylesheets/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="/jquery/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsK3TDkY8pXbn1fvGKGvGmjDNoNdDbgWg&callback=initMap" async defer></script>
+
 </head>
 
 <body>
   <h1>Airport to Airport Distance Calculations </h1>
   <div class="form-group">
+    <form id="multi-form">
+    <label for="airport1">From:</label>
+    <input type="text" name="airport1" class="autocomplete" placeholder="City name or airport code" />
+    <label for="airport2">To:</label>
+    <input type="text" name="airport2" class="autocomplete" placeholder="City name or airport code" />
+    <input type="submit" class="btn btn-info" value="Calculate Distance" />
+    </form>
+<!--
         <label for="airport1">From:</label>
-        <input id="airport1" type="text" name="airport1" placeholder="U.S. Airport Only"
+        <input id="airport1" type="text" name="airport1" class="inputs" placeholder="U.S. Airport Only"
           required/><br>
         <label for="airport2">To:</label>
         <input id="airport2" type="text" name="airport2" placeholder="U.S. Airport Only"
           required/><br>
-        <input type="submit" class="btn btn-info" value="Calculate Distance" />
-    </form>
+        <input type="submit" class="btn btn-info" value="Calculate Distance" />-->
+
   </div>
-
+  <div id="map">
+  </div>
   </body>
-
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/javascript/airport.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/javascript/air-port-codes-api-min.js"></script>
+<script src="/javascript/maps.js"></script>
+<script src="/javascript/airport.js" async defer></script>
 </html>
