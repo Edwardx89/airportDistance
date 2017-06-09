@@ -2,7 +2,6 @@ $( document ).ready(function() {
   //autocomplete
   $(function() {
     $( '.autocomplete' ).each(function (x) {
-      console.log('each', $(this))
         let apca = new apc('autocomplete', {
             key : '2b19bd2446',
             secret : 'bc4ed20725a3d97', // Your API Secret Key: use this if you are not connecting from a web server
@@ -16,8 +15,6 @@ $( document ).ready(function() {
 
                 // this builds each line of the autocomplete
                 itemObj = function (airport, isChild) {
-                  console.log('airport', airport)
-                  console.log('isChild', isChild)
                     let label;
                     if (isChild) { // format children labels to show all airports
                         label = '&rdsh;' + airport.iata + ' - ' + airport.name;
@@ -44,7 +41,6 @@ $( document ).ready(function() {
                   if (data.status) { // success
                     for (var i = 0, len = data.airports.length; i < len; i++) {
                       thisAirport = data.airports[i];
-                      console.log('thisAirport', thisAirport)
                       if(thisAirport.country.name === 'United States') listAry.push(itemObj(thisAirport, true));
                       if (thisAirport.children && thisAirport.country.name === 'United States') {
                         for (var j = 0, jLen = thisAirport.children.length; j < jLen; j++) {
@@ -64,9 +60,7 @@ $( document ).ready(function() {
             },
             select: function( event, ui ) {
                 // Will console log the code of the airport selected
-                // console.log('event', event)
-                // console.log('ui', ui)
-                // console.log(ui.item.code);
+                console.log(ui.item.code);
                 let $thisAirport = $(this)
                 apcs = new apc('single', {
                   key: '2b19bd2446',
@@ -79,9 +73,8 @@ $( document ).ready(function() {
                   console.log(data.message);
                 };
                 apcs.onSuccess = function (data) {
-                  //add the object of data to each input box.
-                  console.log(data.airport);
-                  $thisAirport[0].airport = data.airport
+                  //attaching data.airport to the dom
+                  $thisAirport.data(data.airport)
                 };
             }
         }

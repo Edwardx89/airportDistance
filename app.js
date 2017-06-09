@@ -13,19 +13,18 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, './public')));
 
 // statically serve front-end dependencies
+
+// maybe use join instead? will look at after
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+
 
 //parsing middleware so that you can use req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get('/', function(req, res, next){
-//   console.log('hit')
-//   res.sendFile('index.html', {root: './views'})
-// })
-
 app.use('/', require('./server/index.js'))
+// app.use(express.static(__dirname + '/views'));
 
 
 // failed to catch req above means 404, forward to error handler
