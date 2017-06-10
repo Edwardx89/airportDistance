@@ -9,13 +9,13 @@ function initMap(airport1, airport2) {
 
 //This will draw a path between two airports.
 function drawPath(airport1, airport2) {
-  let airport1path = new google.maps.LatLng(airport1.lat, airport1.lng)
-  let airport2path = new google.maps.LatLng(airport2.lat, airport2.lng)
+  let airport1path = new google.maps.LatLng(airport1.lat, airport1.lng);
+  let airport2path = new google.maps.LatLng(airport2.lat, airport2.lng);
   //creating the paths and storing it.
   const paths = new google.maps.Polyline({
     geodesic: true,
     path: [airport1path, airport2path],
-    strokeColor: "#FF0000",
+    strokeColor: '#FF0000',
     strokeOpacity: 1.0,
     strokeWeight: 2
   });
@@ -24,13 +24,13 @@ function drawPath(airport1, airport2) {
   //set the paths on the map
   paths.setMap(map);
   //fix the view of the map based on the bounds
-  map.fitBounds(bounds)
+  map.fitBounds(bounds);
   return paths;
 }
 
 //setting the size and zoom of the map
 function setBound(location) {
-  let coordinates = location
+  let coordinates = location;
   let bounds = new google.maps.LatLngBounds();
   for (let i = 0; i < coordinates.length; i++) {
     bounds.extend(coordinates[i]);
