@@ -40,9 +40,9 @@ $(function () {
       }
       let miles = distance(lat1, lng1, lat2, lng2)
       path = drawPath(airport1, airport2)
+      // setMarker()
       $(".response").append(`<div class="miles"><h3>${$airport1.name} to ${$airport2.name} = ${+miles} Nautical Miles </h3></div>`)
       $value = $(".miles");
-
 
       reset()
 })

@@ -60,7 +60,7 @@ $( document ).ready(function() {
             },
             select: function( event, ui ) {
                 // Will console log the code of the airport selected
-                console.log(ui.item.code);
+                let $name = $(this)['0'].name
                 let $thisAirport = $(this)
                 apcs = new apc('single', {
                   key: '2b19bd2446',
@@ -75,7 +75,7 @@ $( document ).ready(function() {
                 apcs.onSuccess = function (data) {
                   //attaching data.airport to the dom
                   $thisAirport.data(data.airport)
-                //   makeMarker($thisAirport.data())
+                  makeMarker($thisAirport.data(), $name)
                 };
             }
         }
