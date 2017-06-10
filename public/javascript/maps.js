@@ -28,29 +28,7 @@ let map;
     return paths;
 }
 
-let marks = {}
-function makeMarker(location, name) {
-  console.log(location)
-  let myLatlng = new google.maps.LatLng(+location.latitude, +location.longitude);
-  let mapOptions = {
-    zoom: 4,
-    center: myLatlng
-  }
-  let map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-  let marker = new google.maps.Marker({
-    position: myLatlng,
-    title: location.name,
-    animation: google.maps.Animation.DROP,
-  });
-  marks[name] = marker;
-  console.log(marks)
-
-
-  // To add the marker to the map, call setMap();
-  // marker.setMap(map);
-}
-
+//setting the size and zoom of the map
 function setBound(location) {
   console.log(location)
   let coordinates = location
@@ -59,11 +37,4 @@ function setBound(location) {
     bounds.extend(coordinates[i]);
   }
   return bounds;
-}
-
-function setMarker(){
-  console.log('marks',marks)
-  for(let i in marks) {
-  marks[i].setMap(map)
-}
 }
