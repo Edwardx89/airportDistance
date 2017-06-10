@@ -25,7 +25,7 @@ app.use('/', require('./server/index.js'))
 
 // failed to catch req above means 404, forward to error handler
 app.use( (req, res, next) => {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
 });
 
 // listen on a port
-var port = 3001;
+let port = 3001;
 app.listen(port, () => {
   console.log('The server is listening closely on port', port);
 });

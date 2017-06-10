@@ -13,7 +13,7 @@ Create a web app that calculates the distance (in nautical miles) between two ai
 ## Technologies
 * Javascript
 * Node.js
-* Express
+* Express.js
 * Air-port-codes API
 * Jquery
 * Google Map API
@@ -21,5 +21,18 @@ Create a web app that calculates the distance (in nautical miles) between two ai
 
 ## Code Walk-Through
 
+This airport to airport distance calcuation is created with the help of `Air-port-codes API`, `Google Map API` and `JQuery`. The app is using `Express.js` to run the server and `Javascript`, `Html` and `CSS` for everything else.
+
+### Server
+
+App.js file contains most of the backend codes. We are running on port 3001 of the localhost server and then redirecting all of the routes to `/server/index.js`:
+
+```let port = 3001;
+app.listen(port, () => {
+  console.log('The server is listening closely on port', port);
+});
+
+app.use('/', require('./server/index.js'))
+```
 
 
