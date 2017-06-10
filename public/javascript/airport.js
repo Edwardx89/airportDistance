@@ -75,6 +75,7 @@ $( document ).ready(function() {
                 apcs.onSuccess = function (data) {
                   //attaching data.airport to the dom
                   $thisAirport.data(data.airport)
+                //   makeMarker($thisAirport.data())
                 };
             }
         }

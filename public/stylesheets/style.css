@@ -1,9 +1,10 @@
 #map {
   height: 100%;
+  top: 20px;
 }
 html, body {
-        height: 70%;
-        width: 70%;
+        height: 80%;
+        width: 80%;
         margin: 0;
         padding: 0;
 }
@@ -12,7 +13,15 @@ form {
   display: inline-block;
 }
 form input {
-  font-size: 16px;
+  font-size: 30px;
   padding: 5px;
-  width: 200px;
+  width: 400px;
+}
+
+.btn {
+  font-size: 20px;
+}
+
+.miles {
+  border:1px solid black;
 }

@@ -3,7 +3,6 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
-const axios = require('axios');
 
 app.set('view engine', 'html');
 //Logging Middleware
