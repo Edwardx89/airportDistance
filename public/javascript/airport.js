@@ -62,15 +62,15 @@ $(function () {
       //The select event handler.
       select: function (event, ui) {
         //get the information of the selected airport from the API
-        let $name = $(this)['0'].name
-        let $thisAirport = $(this)
+        let $name = $(this)['0'].name;
+        let $thisAirport = $(this);
         apcs = new apc('single', {
           key: '2b19bd2446',
           secret: 'bc4ed20725a3d97', // Your API Secret Key: use this if you are not connecting from a web server
           limit: 3
         });
         //making the API call with the airport code.
-        apcs.request(ui.item.code)
+        apcs.request(ui.item.code);
 
         //error handler
         apcs.onError = function (data) {
@@ -79,13 +79,13 @@ $(function () {
         //if successful run the function.
         apcs.onSuccess = function (data) {
           //attaching data.airport to the dom
-          $thisAirport.data(data.airport)
+          $thisAirport.data(data.airport);
         };
       }
-    }
+    };
 
     // this is necessary to allow html entities to display properly in the jqueryUI labels
-    $(this).autocomplete(dataObj).data("ui-autocomplete")._renderItem = function (ul, item) {
+    $(this).autocomplete(dataObj).data('ui-autocomplete')._renderItem = function (ul, item) {
       return $('<li></li>').data('item.autocomplete', item).html(item.label).appendTo(ul);
     };
   });
