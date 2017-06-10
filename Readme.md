@@ -50,7 +50,7 @@ The autocomplete functionality and the ability to search airports is power by `A
 
 Next I broke up the codes into three files:
 
-`Airport.js`: This file contains the API call when performing a search on an airport. Since the API call includes airports all over the world, I modified it to only show results from United States.
+`airport.js`: This file contains the API call when performing a search on an airport. Since the API call includes airports all over the world, I modified it to only show results from United States.
 
 ```
 apca.onSuccess = function (data) {
@@ -80,7 +80,7 @@ apca.onError = function (data) {
 },
 ```
 
-The following code will display the autocomplete search results when you are typing (min of 3 letters to activate the autocomplete functions).
+The following code will display the autocomplete search results when you are typing (min of 3 letters to activate the autocomplete function).
 
 ```
 // this is necessary to allow html entities to display properly in the jqueryUI labels
@@ -117,3 +117,51 @@ select: function (event, ui) {
 }
   ```
 
+`maps.js`: This file contains the map functionalities using Google Map API. There are three parts to this code.
+
+The first is inializing the map with a default parameter:
+```
+let map;
+function initMap(airport1, airport2) {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 5,
+    center: { lat: 37.0902, lng: -95.7129 },
+  });
+}
+```
+
+There is also a function to draw the path between two airports:
+```
+unction drawPath(airport1, airport2) {
+  let airport1path = new google.maps.LatLng(airport1.lat, airport1.lng)
+  let airport2path = new google.maps.LatLng(airport2.lat, airport2.lng)
+  //creating the paths and storing it.
+  const paths = new google.maps.Polyline({
+    geodesic: true,
+    path: [airport1path, airport2path],
+    strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  //creating the bound between two airports
+  let bounds = setBound([airport1path, airport2path]);
+  //set the paths on the map
+  paths.setMap(map);
+  //fix the view of the map based on the bounds
+  map.fitBounds(bounds)
+  return paths;
+}
+```
+
+The third function is to set the bound of the google map so that we can adjust the view of the google map.
+
+```
+function setBound(location) {
+  let coordinates = location
+  let bounds = new google.maps.LatLngBounds();
+  for (let i = 0; i < coordinates.length; i++) {
+    bounds.extend(coordinates[i]);
+  }
+  return bounds;
+}
+```
