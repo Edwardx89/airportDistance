@@ -1,8 +1,7 @@
 const router = require('express').Router();
-const Secrets = require('../secrets.js')
 
-router.get('/', function(req, res, next){
-  console.log('hit')
+//using this to render the html file.
+router.get('/', (req, res, next) => {
   res.sendFile('index.html', {root: './views'})
 })
 

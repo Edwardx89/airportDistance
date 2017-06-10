@@ -11,30 +11,27 @@ app.use(morgan('dev'));
 //creating a static path for public folder
 app.use(express.static(path.join(__dirname, './public')));
 
-// statically serve front-end dependencies
-
-// maybe use join instead? will look at after
-app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+// using this to redirect bootstrap and jquery routes
+app.use('/bootstrap', express.static(path.join(__dirname + '/node_modules/bootstrap/dist')));
+app.use('/jquery', express.static(path.join(__dirname + '/node_modules/jquery/dist')));
 
 
 //parsing middleware so that you can use req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//redirecting all routes to look at the index.js file.
 app.use('/', require('./server/index.js'))
-// app.use(express.static(__dirname + '/views'));
-
 
 // failed to catch req above means 404, forward to error handler
-app.use(function (req, res, next) {
+app.use( (req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // handle any errors
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err, err.stack);
   res.status(err.status || 500);
   res.render('error', {
@@ -44,6 +41,6 @@ app.use(function (err, req, res, next) {
 
 // listen on a port
 var port = 3001;
-app.listen(port, function () {
+app.listen(port, () => {
   console.log('The server is listening closely on port', port);
 });
